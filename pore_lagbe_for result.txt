@@ -1,0 +1,84 @@
+ <?php include_once('initialize.php'); ?>
+ <style type="text/css">
+  table{
+    border-collapse: collapse;
+  }
+  td,th{
+     padding: 15px 15px;
+     text-align: center;
+  }
+  .button{
+    padding: 10px 10px;
+    background: #0df18f;
+    bottom: 150px;
+    position: absolute;
+  }
+  p{
+    font-size: 20px;
+
+  }
+  h1{
+    color: red;
+  }
+</style>
+ <?php
+
+ if(isset($_POST['submit_ans']))
+  {
+   $roll=$_SESSION['id'];
+
+    $ex=$_GET['exam_id'];
+    $correct=$wrong=0;
+    $sub="";
+    $sl="select *from examschedule where exam_id='$ex';";
+    $rs=mysqli_query($conn,$sl);
+    if ($rs->num_rows > 0) 
+      while($row = $result->fetch_assoc()) {
+      $sub=$row['exam_name'];
+      break;
+    }
+
+    echo "<center><br><br> <h1>Exam Evaluation</h1></center>";
+    echo "<center><p style=\"font-style:bold\">Roll: $roll &nbsp; &nbsp; Exam: $ex<br>Subject:$sub<p></center><br>";
+    $sql="select *from $ex;";
+  
+    echo "<center><table border=\"1\"><tr><th>Ouestion No</th><th>Your Answer</th><th>Right Answer</th></tr>";
+
+    $result=mysqli_query($conn,$sql);
+        if ($result->num_rows > 0) {
+           while($row = $result->fetch_assoc()) {
+          $ans=$row['ans'];
+          $qn=$row['question_no'];
+          $rp=$_POST[$qn];
+          
+          
+
+          if($ans==$rp)
+          {
+            $correct=$correct+1;
+            echo "<tr style=\"color:green\"><td>$qn</td><td>$rp</td><td>$ans</td></tr>";
+          }
+          else
+          {
+             echo "<tr style=\"color:red\"><td>$qn</td><td>$rp</td><td>$ans</td></tr>";
+            $wrong=$wrong+1;
+          }
+
+        }
+     }
+     echo"</table><br><br>";
+     echo "<p>Right Answer: $correct";
+     echo "<br>";
+     echo "Wrong Answer: $wrong <br>";
+     $mark=$correct;
+     echo "Marks= $mark </p></center>";
+
+     $sql="INSERT INTO `results` (`exam_id`,`subject`, `roll`, `class`, `correct`, `wrong`, `marks`,`publish`) VALUES ('$ex','$sub','$roll','$class','$correct','$wrong','$mark','0');";
+     $res=mysqli_query($conn,$sql);
+
+     
+
+
+
+  }
+?>

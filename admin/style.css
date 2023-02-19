@@ -1,0 +1,54 @@
+body{
+			background: #0df18f;
+			padding: 10px;
+		}
+		table{
+			border-collapse: collapse;
+		}
+		h3{
+			color: red;
+		}
+
+		td{
+			padding: 10px 10px;
+			text-align: center;
+
+		}
+		a{
+			text-decoration: none;
+		}
+		*{
+ 			margin: 0;
+ 			padding: 0;
+
+ 		}
+ 		ul {
+ 		
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+  background-color: tomato;
+}
+.active {
+  background-color: #4148E0;
+  border: 1px solid #4148e0;
+  border-radius: 200px;
+}
