@@ -1,7 +1,7 @@
 # Online_Shcool
 Full functional online school. This project was completed using HTML, CSS, JavaScript and PHP.
 
-visit this site here: https://smscl.000webhostapp.com/login.php
+visit this site here: https://tos-scl.000webhostapp.com/login.php
 
 Features:
 1. Students can join class and attendence is automatically calculated.
